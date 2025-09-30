@@ -35,13 +35,14 @@ def rename_col(df):
 
 def date_format(df):
     df["Start Date"] = pd.to_datetime(df["Start Date"], dayfirst=True, format="mixed").dt.strftime("%#d/%#m/%Y")
-    df["Due Date"] = pd.to_datetime(df["Due Date"], dayfirst=True, format="mixed").dt.strftime("%#d/%#m/%Y")
-    df["End Date"] = df["Due Date"]
+    df["Due Date"] = df["Start Date"]
+    df["End Date"] = df["Start Date"]
     return df
 
 def time_format(df):
     df["Planned (Hrs)"] = (df["Planned (Hrs)"] / 3600).round(2)
     df["Actual (Hrs)"] = (df["Actual (Hrs)"] / 3600).round(2)
+    df["Status"] = df["Status"].astype(str).str.strip().replace({"Done": "Completed", "done": "Completed"})
     return df
 
 def save_to_excel(df):
