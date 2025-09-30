@@ -9,4 +9,5 @@ dependencies = [
     "ipywidgets>=8.1.7",
     "openpyxl>=3.1.5",
     "pandas>=2.3.2",
+    "streamlit>=1.50.0",
 ]
