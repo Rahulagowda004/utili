@@ -34,7 +34,8 @@ def rename_col(df):
     return df
 
 def date_format(df):
-    df["Start Date"] = pd.to_datetime(df["Start Date"], dayfirst=True, format="mixed").dt.strftime("%#d/%#m/%Y")
+    df["Start Date"] = pd.to_datetime(df["Start Date"], format="%d/%b/%y %I:%M %p", errors="coerce")
+    df["Start Date"] = df["Start Date"].dt.strftime("%d-%b-%y")
     df["Due Date"] = df["Start Date"]
     df["End Date"] = df["Start Date"]
     return df
